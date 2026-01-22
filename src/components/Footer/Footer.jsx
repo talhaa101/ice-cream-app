@@ -7,7 +7,7 @@ const Footer = () => {
                 <div>Copyright &copy;2020.</div>
                 <div className="textRight">
                     Powered by 
-                    <a href="https://www.facebook.com/talhaOabu/"><strong> Abu Talha</strong></a>
+                    <a target="_blank" href="https://www.facebook.com/talhaOabu/"><strong> Abu Talha</strong></a>
                 </div>
             </div>
         </footer>
