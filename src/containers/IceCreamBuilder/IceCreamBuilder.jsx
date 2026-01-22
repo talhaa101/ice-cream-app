@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Builder from '../../components/Builder/Builder';
 import IceCream from '../../components/IceCream/IceCream';
 import classes from './IceCreamBuilder.module.css';
+import { mockItems } from '../../data/mockData';
 
 export default class IceCreamBuilder extends Component {
     state = {
@@ -11,38 +12,48 @@ export default class IceCreamBuilder extends Component {
     };
 
     componentDidMount() {
-        fetch('https://react-course-27447.firebaseio.com/items.json')
-            .then((response) => response.json())
-            .then((responeData) => {
-                this.setState({
-                    items: responeData,
-                });
-            });
+        // Using mock data instead of fetching from Firebase
+        this.setState({
+            items: mockItems,
+        });
     }
 
     addScoop = (scoop) => {
         const { scoops, items } = this.state;
+        if (!items[scoop]) return; // Safety check
+        
         const workingScoops = [...scoops];
         workingScoops.push(scoop);
+        const item = items[scoop];
+        const price = typeof item === 'object' ? item.price : item;
+        
         this.setState((prevState) => {
             return {
                 scoops: workingScoops,
-                totalPrice: prevState.totalPrice + items[scoop],
+                totalPrice: prevState.totalPrice + (price || 0),
             };
         });
     };
 
     removeScoop = (scoop) => {
         const { scoops, items } = this.state;
+        if (!items[scoop] || scoops.length === 0) return; // Safety check
+        
         const workingScoops = [...scoops];
-
-        const scoopIndex = workingScoops.findIndex((sc) => sc === scoop);
-
+        
+        // Find the last occurrence of this scoop (since they're stacked)
+        const scoopIndex = workingScoops.lastIndexOf(scoop);
+        
+        if (scoopIndex === -1) return; // Scoop not found
+        
         workingScoops.splice(scoopIndex, 1);
+        const item = items[scoop];
+        const price = typeof item === 'object' ? item.price : item;
+        
         this.setState((prevState) => {
             return {
                 scoops: workingScoops,
-                totalPrice: prevState.totalPrice - items[scoop],
+                totalPrice: Math.max(0, prevState.totalPrice - (price || 0)),
             };
         });
     };

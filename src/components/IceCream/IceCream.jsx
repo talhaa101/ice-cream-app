@@ -4,6 +4,7 @@ import Scoop from './Scoop/Scoop';
 
 const IceCream = ({ scoops }) => {
     // const flavors = Object.keys(scoo);
+    const hasScoops = scoops && scoops.length > 0;
 
     return (
         <div>
@@ -13,7 +14,7 @@ const IceCream = ({ scoops }) => {
                 {scoops.map((scoop) => (
                     <Scoop key={`${scoop}${Math.random()}`} scoop={scoop} />
                 ))}
-                <div className={classes.cherry} />
+                {hasScoops && <div className={classes.cherry} />}
             </div>
         </div>
     );

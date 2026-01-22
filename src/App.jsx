@@ -1,15 +1,17 @@
+import Layout from './components/Layout/Layout';
+import Header from './components/Header/Header';
+import Body from './components/Body/Body';
+import Footer from './components/Footer/Footer';
 import './App.css';
 
-function App() {
-    return (
-        // <Layout>
-        //     <Header />
-        //     <Body />
-        //     <Footer />
-        // </Layout>
 
-        <div>Hello Talha</div>
+export default function App() {
+    return (
+        <Layout>
+            <Header />
+            <Body />
+            <Footer />
+        </Layout>
     );
 }
 
-export default App;
