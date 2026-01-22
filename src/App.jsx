@@ -1,10 +1,15 @@
+import './App.css';
 
 function App() {
-  return (
-    <div className="App">
-      Ice Cream Shop
-    </div>
-  );
+    return (
+        // <Layout>
+        //     <Header />
+        //     <Body />
+        //     <Footer />
+        // </Layout>
+
+        <div>Hello Talha</div>
+    );
 }
 
 export default App;
