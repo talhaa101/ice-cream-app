@@ -1,7 +1,7 @@
 
+import logo from "../../html/images/logo.svg";
+import reactlogo from "../../html/images/react.svg";
 import classess from "./header.module.css";
-import logo from from "../../html/images/logo.svg";
-import reactlogo from from "../../html/images/react.svg";
 
 
 const Header = () => {
